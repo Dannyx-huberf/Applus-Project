@@ -67,8 +67,8 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-white font-medium">📞 Phone</p>
-                  <p className="text-white/60">+2348140540313</p>
-                  <p className="text-white/60">+2349096854184</p>
+                  <p className="text-white/60">+234 814 0540 313</p>
+                  <p className="text-white/60">+234 909 685 4184</p>
                 </div>
                 <div>
                   <p className="text-white font-medium">✉ Email</p>

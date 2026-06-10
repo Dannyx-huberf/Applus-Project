@@ -50,7 +50,8 @@ export default function Footer() {
             <div className="space-y-6 text-white/60 text-sm">
               <div>
                 <p className="text-white/80">Phone</p>
-                <p>+234 XXX XXX XXXX</p>
+                <p>+234 814 0540 313</p>
+                <p>+234 909 685 4184</p>
               </div>
 
               <div>
@@ -58,10 +59,6 @@ export default function Footer() {
                 <p>info@applusprojects.com</p>
               </div>
 
-              <div>
-                <p className="text-white/80">Head Office</p>
-                <p>Abuja, Nigeria</p>
-              </div>
 
               {/* Office Locations */}
               <div className="pt-4 border-t border-white/10 space-y-5">
