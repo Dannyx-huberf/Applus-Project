@@ -29,8 +29,8 @@ export default function Footer() {
               <a href="#about" className="block hover:text-white transition">
                 About
               </a>
-              <a href="#properties" className="block hover:text-white transition">
-                Developments
+              <a href="#gallery" className="block hover:text-white transition">
+                Gallery
               </a>
               <a href="#services" className="block hover:text-white transition">
                 Services
