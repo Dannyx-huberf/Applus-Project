@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { galleryImages } from "@/data/gallery";
+import { galleryImages } from "@/data/gallery"; // <-- Update this path to where your gallery images data is saved
 import Reveal from "../animations/Reveal";// <-- Update this path to where your Reveal component is saved
 
 export default function Gallery() {

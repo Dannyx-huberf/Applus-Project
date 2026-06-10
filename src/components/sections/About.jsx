@@ -1,6 +1,6 @@
 import Reveal from "@/components/animations/Reveal";
 import AboutSlider from "@/components/about/AboutSlider";
-import { coreValues } from "@/data/about";
+import {coreValues} from "@/data/about";
 
 export default function About() {
   return (
