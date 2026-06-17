@@ -7,7 +7,7 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="relative overflow-hidden py-32 bg-white"
+      className="relative overflow-hidden py-32 bg-[#0b0f14] text-white"
     >
       {/* --- Background Watermark Logos --- */}
       {/* Top Left Watermark */}

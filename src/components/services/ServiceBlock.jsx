@@ -44,7 +44,7 @@ export default function ServiceBlock({
           <p
             className="
               mt-6
-              text-black/70
+              text-white/70
               leading-8
               max-w-xl
             "
