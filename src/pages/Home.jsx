@@ -6,9 +6,11 @@ import Gallery from "@/components/sections/Gallery";
 import About from "@/components/sections/About";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import Services from "@/components/sections/Services";
+import Staff from "@/components/sections/Staff";
 import Contact from "@/components/sections/Contact";
 
 import WhatsAppFloat from "@/components/common/WhatsAppFloat";
+import Properties from "@/components/sections/Properties";
 
 export default function Home() {
   return (
@@ -19,7 +21,11 @@ export default function Home() {
 
       <About />
 
+      <Staff />
+
       <Services />
+
+      <Properties />
 
       <Gallery />
 

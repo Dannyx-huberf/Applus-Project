@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import Reveal from "@/components/animations/Reveal";
 import { Button } from "@/components/ui/button";
-import { useForm, ValidationError } from "@formspree/react"; // <-- Formspree imports
+import { useForm, ValidationError } from "@formspree/react";
+import { MapPin, Phone, Mail, ArrowUpRight } from "lucide-react"; // added icons
 
 export default function Contact() {
-  // Initialize the official Formspree hook with your specific form ID
   const [state, handleSubmit] = useForm("xdavdkwe");
-  
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -15,143 +15,194 @@ export default function Contact() {
 
   const [showSuccess, setShowSuccess] = useState(false);
 
-  // Automatically clear the form and show a temporary success message when sent
   useEffect(() => {
     if (state.succeeded) {
-      setForm({ name: "", email: "", message: "" }); // Clears the inputs
+      setForm({ name: "", email: "", message: "" });
       setShowSuccess(true);
-      
-      // Hide the success message after 5 seconds
-      const timer = setTimeout(() => {
-        setShowSuccess(false);
-      }, 5000);
-      
+      const timer = setTimeout(() => setShowSuccess(false), 5000);
       return () => clearTimeout(timer);
     }
   }, [state.succeeded]);
 
   return (
-    <section id="contact" className="py-32 bg-[#0b0f14]">
-      <div className="container-custom">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+    <section
+      id="contact"
+      className="relative overflow-hidden py-28 md:py-40 bg-[#030504]"
+    >
+      {/* ── Background atmosphere (matches WhyChooseUs) ── */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_center,rgba(141,220,110,0.05)_0%,transparent_70%)]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.03]"
+      />
 
-          {/* LEFT SIDE */}
+      <div className="container-custom relative z-10 px-6 md:px-12 lg:px-20">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          {/* ── LEFT SIDE ── */}
           <Reveal>
             <div>
-              <span className="uppercase tracking-[0.35em] text-sm text-[#1E5712]">
+              <span className="inline-block text-xs font-mono uppercase tracking-[0.3em] text-[#8ddc6e]/70 mb-6">
                 Contact Us
               </span>
-              <h2 className="mt-6 text-4xl md:text-6xl font-heading font-light text-white leading-tight">
-                Let’s Build Your Next Project
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] tracking-tight text-white">
+                Let’s build
+                <br />
+                <span className="font-semibold text-[#8ddc6e]">
+                  your next project
+                </span>
               </h2>
-              <p className="mt-8 text-white/70 leading-relaxed max-w-xl">
-                Whether you're looking for a development partner,
-                investment opportunity, or your future home,
-                our team is ready to help you make it happen.
+              <p className="mt-8 text-white/50 leading-relaxed max-w-xl">
+                Whether you’re looking for a development partner, an investment
+                opportunity, or your future home — we’re ready to bring your
+                vision to life.
               </p>
 
-              <div className="mt-12 space-y-6 text-white/80">
-                <div>
-                  <p className="text-white font-medium">📍 Lagos Office</p>
-                  <p className="text-white/60">
-                    E33 Gat Oboh Drive, Millennium Homes Estate,
-                    Oniru, Lagos State, Nigeria
-                  </p>
+              {/* Contact details with icons */}
+              <div className="mt-14 space-y-8">
+                {/* Lagos Office */}
+                <div className="flex gap-4">
+                  <MapPin className="w-5 h-5 mt-0.5 text-[#8ddc6e]/70 flex-shrink-0" />
+                  <div>
+                    <p className="text-white font-medium">Lagos Office</p>
+                    <p className="text-white/40 text-sm leading-relaxed">
+                      E33 Gat Oboh Drive, Millennium Homes Estate, Oniru, Lagos
+                      State, Nigeria
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-white font-medium">📍 Benin Office</p>
-                  <p className="text-white/60">
-                    13 Ajayi Street, off Upper Mission Road,
-                    New Benin, Benin City, Edo State, Nigeria
-                  </p>
+
+                {/* Benin Office */}
+                <div className="flex gap-4">
+                  <MapPin className="w-5 h-5 mt-0.5 text-[#8ddc6e]/70 flex-shrink-0" />
+                  <div>
+                    <p className="text-white font-medium">Benin Office</p>
+                    <p className="text-white/40 text-sm leading-relaxed">
+                      13 Ajayi Street, off Upper Mission Road, New Benin, Benin
+                      City, Edo State, Nigeria
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-white font-medium">📞 Phone</p>
-                  <p className="text-white/60">+234 814 0540 313</p>
-                  <p className="text-white/60">+234 909 685 4184</p>
+
+                {/* Phone */}
+                <div className="flex gap-4">
+                  <Phone className="w-5 h-5 mt-0.5 text-[#8ddc6e]/70 flex-shrink-0" />
+                  <div>
+                    <p className="text-white font-medium">Phone</p>
+                    <p className="text-white/40 text-sm">+234 814 0540 313</p>
+                    <p className="text-white/40 text-sm">+234 909 685 4184</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-white font-medium">✉ Email</p>
-                  <p className="text-white/60">info@applusprojects.com</p>
+
+                {/* Email */}
+                <div className="flex gap-4">
+                  <Mail className="w-5 h-5 mt-0.5 text-[#8ddc6e]/70 flex-shrink-0" />
+                  <div>
+                    <p className="text-white font-medium">Email</p>
+                    <p className="text-white/40 text-sm">
+                      info@applusprojects.com
+                    </p>
+                  </div>
                 </div>
               </div>
 
+              {/* WhatsApp CTA */}
               <a
                 href="https://wa.me/2348109333969"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex mt-10 px-6 py-3 bg-[#1E5712] text-white hover:bg-[#063406] transition rounded-none"
+                className="inline-flex items-center gap-2 mt-12 px-6 py-3 border border-[#8ddc6e]/30 text-[#8ddc6e] hover:bg-[#8ddc6e]/10 transition-colors text-sm font-mono uppercase tracking-wider"
               >
                 Chat on WhatsApp
+                <ArrowUpRight className="w-4 h-4" />
               </a>
             </div>
           </Reveal>
 
-          {/* RIGHT SIDE - GLASS FORM */}
+          {/* ── RIGHT SIDE – Glass form card ── */}
           <Reveal delay={0.2}>
-            <div className="relative">
-              <div className="backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-10">
-                
-                {/* Formspree handles the submission event automatically here */}
-                <form onSubmit={handleSubmit}>
-                  
-                  {/* Floating Input: Name */}
-                  <div className="relative mb-6">
+            <div className="relative border border-white/[0.08] backdrop-blur-xl bg-black/40">
+              {/* Corner accents */}
+              <div className="absolute top-0 left-0 w-10 h-10 border-t border-l border-[#8ddc6e]/60" />
+              <div className="absolute bottom-0 right-0 w-10 h-10 border-b border-r border-[#8ddc6e]/60" />
+
+              <div className="p-8 md:p-10">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Name */}
+                  <div className="relative">
                     <input
                       name="name"
                       required
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      className="peer w-full bg-transparent border border-white/10 px-4 pt-6 pb-2 text-white outline-none focus:border-[#1E5712]"
+                      className="peer w-full bg-transparent border border-white/[0.08] px-4 pt-6 pb-2 text-white outline-none focus:border-[#8ddc6e]/50 transition-colors placeholder-transparent"
+                      placeholder="Full Name"
                     />
-                    <label className="absolute left-4 top-2 text-xs text-white/50 peer-focus:text-[#1E5712]">
+                    <label className="absolute left-4 top-2 text-xs text-white/40 peer-focus:text-[#8ddc6e] transition-colors">
                       Full Name
                     </label>
-                    <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-400 text-xs mt-1" />
+                    <ValidationError
+                      prefix="Name"
+                      field="name"
+                      errors={state.errors}
+                      className="text-red-400 text-xs mt-1"
+                    />
                   </div>
 
-                  {/* Floating Input: Email */}
-                  <div className="relative mb-6">
+                  {/* Email */}
+                  <div className="relative">
                     <input
                       name="email"
                       type="email"
                       required
                       value={form.email}
                       onChange={(e) => setForm({ ...form, email: e.target.value })}
-                      className="peer w-full bg-transparent border border-white/10 px-4 pt-6 pb-2 text-white outline-none focus:border-[#1E5712]"
+                      className="peer w-full bg-transparent border border-white/[0.08] px-4 pt-6 pb-2 text-white outline-none focus:border-[#8ddc6e]/50 transition-colors placeholder-transparent"
+                      placeholder="Email Address"
                     />
-                    <label className="absolute left-4 top-2 text-xs text-white/50 peer-focus:text-[#1E5712]">
+                    <label className="absolute left-4 top-2 text-xs text-white/40 peer-focus:text-[#8ddc6e] transition-colors">
                       Email Address
                     </label>
-                    <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-400 text-xs mt-1" />
+                    <ValidationError
+                      prefix="Email"
+                      field="email"
+                      errors={state.errors}
+                      className="text-red-400 text-xs mt-1"
+                    />
                   </div>
 
-                  {/* Floating Input: Message */}
-                  <div className="relative mb-8">
+                  {/* Message */}
+                  <div className="relative">
                     <textarea
                       name="message"
                       required
-                      rows="5"
+                      rows={5}
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
-                      className="peer w-full bg-transparent border border-white/10 px-4 pt-6 pb-2 text-white outline-none focus:border-[#1E5712]"
+                      className="peer w-full bg-transparent border border-white/[0.08] px-4 pt-6 pb-2 text-white outline-none focus:border-[#8ddc6e]/50 transition-colors resize-none placeholder-transparent"
+                      placeholder="Your Message"
                     />
-                    <label className="absolute left-4 top-2 text-xs text-white/50 peer-focus:text-[#1E5712]">
+                    <label className="absolute left-4 top-2 text-xs text-white/40 peer-focus:text-[#8ddc6e] transition-colors">
                       Your Message
                     </label>
-                    <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-400 text-xs mt-1" />
+                    <ValidationError
+                      prefix="Message"
+                      field="message"
+                      errors={state.errors}
+                      className="text-red-400 text-xs mt-1"
+                    />
                   </div>
 
-                  {/* Alert Messages */}
+                  {/* Success / Error messages */}
                   {showSuccess && (
-                    <div className="mb-6 p-4 border border-green-500/30 bg-green-500/10 text-green-400 text-sm">
-                      Message sent successfully! We will get back to you soon.
+                    <div className="p-4 border border-green-500/30 bg-green-500/10 text-green-400 text-sm">
+                      Message sent successfully! We’ll get back to you soon.
                     </div>
                   )}
-                  
-                  {/* Formspree generic error block */}
                   {state.errors && state.errors.length > 0 && (
-                    <div className="mb-6 p-4 border border-red-500/30 bg-red-500/10 text-red-400 text-sm">
+                    <div className="p-4 border border-red-500/30 bg-red-500/10 text-red-400 text-sm">
                       Please check the form for errors and try again.
                     </div>
                   )}
@@ -160,12 +211,11 @@ export default function Contact() {
                   <Button
                     type="submit"
                     disabled={state.submitting}
-                    className="w-full h-12 rounded-none bg-[#1E5712] hover:bg-[#063406] text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full h-12 rounded-none bg-[#8ddc6e] text-[#030504] font-medium hover:bg-[#7bc85d] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {state.submitting ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
-
               </div>
             </div>
           </Reveal>

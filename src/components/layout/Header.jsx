@@ -11,6 +11,7 @@ import {
 const links = [
   { name: "About", href: "#about" },
   { name: "Gallery", href: "#gallery" },
+  { name: "Properties", href: "#properties" },
   { name: "Services", href: "#services" },
   { name: "Contact", href: "#contact" },
 ];
@@ -28,48 +29,46 @@ export default function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-black/70 backdrop-blur-xl border-b border-white/10"
+          ? "bg-black/60 backdrop-blur-xl border-b border-white/[0.06]"
           : "bg-transparent"
       }`}
     >
-      <div className="container-custom h-24 flex items-center justify-between">
-
-        {/* LOGO */}
+      <div className="container-custom h-24 flex items-center justify-between px-6 md:px-12">
+        {/* ── Logo ── */}
         <a href="/" className="flex items-center">
           <img
             src={logoImage}
-            alt="APPLUS Logo"
+            alt="Applus Projects Logo"
             className="h-5 sm:h-7 md:h-9 w-auto object-contain"
           />
         </a>
 
-        {/* DESKTOP NAV */}
-        <nav className="hidden lg:flex items-center gap-10">
+        {/* ── Desktop Navigation ── */}
+        <nav className="hidden lg:flex items-center gap-8">
           {links.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="
-                text-sm uppercase tracking-[0.18em]
-                text-white/75 hover:text-white transition-colors
-              "
+              className="relative text-sm font-mono uppercase tracking-[0.15em] text-white/60 hover:text-white transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-[#8ddc6e] hover:after:w-full after:transition-all after:duration-300"
             >
               {link.name}
             </a>
           ))}
         </nav>
 
-        {/* CTA DESKTOP */}
+        {/* ── CTA Desktop ── */}
         <div className="hidden lg:block">
-          <Button 
-  className="rounded-none bg-[#1E5712] hover:bg-[#063406] text-white px-8"
-  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
->
-  Book Inspection
-</Button>
+          <Button
+            className="rounded-none bg-[#8ddc6e] text-[#030504] font-medium hover:bg-[#7bc85d] transition-colors px-8 h-11"
+            onClick={() =>
+              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+            }
+          >
+            Book Inspection
+          </Button>
         </div>
 
-        {/* MOBILE */}
+        {/* ── Mobile Menu ── */}
         <Sheet>
           <SheetTrigger asChild>
             <button
@@ -81,17 +80,11 @@ export default function Header() {
             </button>
           </SheetTrigger>
 
-          {/*
-            shadcn's SheetContent already renders its own built-in close
-            "X" in the top-right corner — that's what was causing the
-            double-X. We style that built-in one via [&>button] instead
-            of adding a second SheetClose button.
-          */}
           <SheetContent
             side="right"
             className="
               w-[78%] sm:w-[340px] max-w-sm
-              bg-[#0b0f14] border-l border-white/10 text-white
+              bg-[#030504] border-l border-white/[0.08] text-white
               flex flex-col p-0
               [&>button]:text-white/70 [&>button]:hover:text-white
               [&>button]:top-6 [&>button]:right-6
@@ -99,26 +92,26 @@ export default function Header() {
               [&>button_svg]:w-5 [&>button_svg]:h-5
             "
           >
-            {/* LOGO IN DRAWER HEADER */}
-            <div className="h-24 flex items-center px-8 border-b border-white/10">
+            {/* Drawer header */}
+            <div className="h-24 flex items-center px-8 border-b border-white/[0.08]">
               <img
                 src={logoImage}
-                alt="APPLUS Logo"
+                alt="Applus Projects Logo"
                 className="h-6 w-auto object-contain"
               />
             </div>
 
-            {/* LINKS */}
+            {/* Drawer links */}
             <nav className="flex flex-col px-8 pt-10 gap-1">
               {links.map((link) => (
                 <SheetClose asChild key={link.name}>
                   <a
                     href={link.href}
                     className="
-                      text-white text-base uppercase tracking-[0.2em]
-                      py-4 border-b border-white/10
-                      opacity-80 hover:opacity-100 hover:text-[#1E5712]
-                      transition
+                      text-white text-base font-mono uppercase tracking-[0.2em]
+                      py-4 border-b border-white/[0.06]
+                      opacity-70 hover:opacity-100 hover:text-[#8ddc6e]
+                      transition-all
                     "
                   >
                     {link.name}
@@ -127,11 +120,11 @@ export default function Header() {
               ))}
             </nav>
 
-            {/* CTA FULL WIDTH */}
+            {/* Drawer CTA */}
             <div className="mt-auto px-8 pb-10 pt-6">
               <SheetClose asChild>
                 <Button
-                  className="w-full h-12 rounded-none bg-[#1E5712] hover:bg-[#063406] text-white"
+                  className="w-full h-12 rounded-none bg-[#8ddc6e] text-[#030504] font-medium hover:bg-[#7bc85d]"
                   onClick={() =>
                     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
                   }
