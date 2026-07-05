@@ -40,17 +40,17 @@ export default function Staff() {
 
             <div className="grid md:grid-cols-[minmax(0,420px)_1fr]">
               {/* Photo */}
-              <div className="relative h-[420px] md:h-[580px] overflow-hidden">
-                <img
-                  src={founder.image}
-                  alt={founder.name}
-                  className="w-full h-full object-cover"
-                />
-                {/* Green left bar */}
-                <div className="absolute inset-y-0 left-0 w-1.5 bg-[#8ddc6e] hidden md:block" />
-                {/* Bottom gradient for mobile */}
-                <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-[#030504]/80 to-transparent md:hidden" />
-              </div>
+              <div className="relative h-80 sm:h-[420px] md:h-[580px] overflow-hidden">
+  <img
+    src={founder.image}
+    alt={founder.name}
+    className="w-full h-full object-cover"
+    style={{ objectPosition: founder.imagePosition }}
+  />
+
+  <div className="absolute inset-y-0 left-0 w-1.5 bg-[#8ddc6e] hidden md:block" />
+  <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-[#030504]/80 to-transparent md:hidden" />
+</div>
 
               {/* Bio */}
               <div className="flex flex-col justify-center p-8 md:p-14">
@@ -108,22 +108,27 @@ export default function Staff() {
                   </span>
 
                   {/* Photo */}
-                  <div className="relative w-full md:w-56 shrink-0 h-64 md:h-auto overflow-hidden">
-                    <img
-                      src={person.image}
-                      alt={person.name}
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition duration-700 ease-out"
-                    />
-                    <span
-                      className="
-                        absolute bottom-3 left-3
-                        text-[10px] font-mono uppercase tracking-[0.2em]
-                        bg-[#8ddc6e] text-[#030504] px-2.5 py-1
-                      "
-                    >
-                      {person.role}
-                    </span>
-                  </div>
+                  <div className="relative w-full md:w-64 lg:w-72 shrink-0 h-80 sm:h-96 md:h-auto overflow-hidden bg-[#0a0a0a]">
+  <img
+    src={person.image}
+    alt={person.name}
+    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+    style={{
+      objectPosition: person.imagePosition,
+    }}
+  />
+
+  <span
+    className="
+      absolute bottom-3 left-3
+      text-[10px] font-mono uppercase tracking-[0.2em]
+      bg-[#8ddc6e] text-[#030504]
+      px-2.5 py-1
+    "
+  >
+    {person.role}
+  </span>
+</div>
 
                   {/* Text */}
                   <div

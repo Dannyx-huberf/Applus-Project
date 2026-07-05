@@ -110,7 +110,7 @@ export default function Contact() {
 
               {/* WhatsApp CTA */}
               <a
-                href="https://wa.me/2348109333969"
+                href="https://wa.me/2349096854184"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 mt-12 px-6 py-3 border border-[#8ddc6e]/30 text-[#8ddc6e] hover:bg-[#8ddc6e]/10 transition-colors text-sm font-mono uppercase tracking-wider"

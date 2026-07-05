@@ -4,19 +4,18 @@ import house2 from "@/assets/properties/house2.png";
 
 export const properties = [
   {
-    id: "mini-lux-3bed",
+    id: "mini-lux-2bed",
     project: "Applus Mini-Lux",
-    unit: "3-Bedroom Apartment",
+    unit: "2-Bedroom Apartment",
     tagline: "Spacious family living with full lifestyle amenities",
     image: house1, // swap to: miniLuxImg
-    badge: "3 Bed",
+    badge: "2 Bed",
     features: [
-      { icon: "🛏️", label: "Bedrooms",  value: "3 Bedrooms" },
+      { icon: "🛏️", label: "Bedrooms",  value: "2 Bedrooms" },
       { icon: "🚿", label: "Bathrooms",  value: "3 Toilets & Baths" },
       { icon: "🏊", label: "Pool",       value: "Swimming Pool" },
       { icon: "🛋️", label: "Lounge",     value: "Recreational Lounge" },
       { icon: "🚗", label: "Parking",    value: "Dedicated Car Park" },
-      { icon: "💡", label: "Power",      value: "24hr Power Supply" },
       { icon: "🔒", label: "Security",   value: "24hr Security" },
       { icon: "🏗️", label: "Finish",     value: "Premium Finishing" },
     ],
@@ -34,7 +33,6 @@ export const properties = [
       { icon: "🏊", label: "Pool",       value: "Swimming Pool" },
       { icon: "🛋️", label: "Lounge",     value: "Recreational Lounge" },
       { icon: "🚗", label: "Parking",    value: "Dedicated Car Park" },
-      { icon: "💡", label: "Power",      value: "24hr Power Supply" },
       { icon: "🔒", label: "Security",   value: "24hr Security" },
       { icon: "🏗️", label: "Finish",     value: "Premium Finishing" },
     ],
@@ -50,7 +48,6 @@ export const properties = [
       { icon: "🛏️", label: "Bedrooms",  value: "Spacious Bedrooms" },       // update once confirmed
       { icon: "🚿", label: "Bathrooms",  value: "Modern Bathrooms" },         // update once confirmed
       { icon: "🚗", label: "Parking",    value: "Car Park" },
-      { icon: "💡", label: "Power",      value: "24hr Power Supply" },
       { icon: "🔒", label: "Security",   value: "24hr Security" },
       { icon: "🏗️", label: "Finish",     value: "Quality Finishing" },
       { icon: "🌊", label: "Drainage",   value: "Good Drainage System" },
