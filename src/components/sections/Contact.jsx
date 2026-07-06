@@ -1,28 +1,59 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Reveal from "@/components/animations/Reveal";
 import { Button } from "@/components/ui/button";
-import { useForm, ValidationError } from "@formspree/react";
-import { MapPin, Phone, Mail, ArrowUpRight } from "lucide-react"; // added icons
+import { MapPin, Phone, Mail, ArrowUpRight } from "lucide-react";
 
 export default function Contact() {
-  const [state, handleSubmit] = useForm("xdavdkwe");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const [form, setForm] = useState({
     name: "",
     email: "",
     message: "",
+    company: "",
   });
 
-  const [showSuccess, setShowSuccess] = useState(false);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  useEffect(() => {
-    if (state.succeeded) {
-      setForm({ name: "", email: "", message: "" });
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Something went wrong.");
+      }
+
+      setForm({
+        name: "",
+        email: "",
+        message: "",
+        company: "",
+      });
+
       setShowSuccess(true);
-      const timer = setTimeout(() => setShowSuccess(false), 5000);
-      return () => clearTimeout(timer);
+
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 5000);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
-  }, [state.succeeded]);
+  };
 
   return (
     <section
@@ -102,7 +133,7 @@ export default function Contact() {
                   <div>
                     <p className="text-white font-medium">Email</p>
                     <p className="text-white/40 text-sm">
-                      info@applusprojects.com
+                      info@applusproperties.com
                     </p>
                   </div>
                 </div>
@@ -130,6 +161,19 @@ export default function Contact() {
 
               <div className="p-8 md:p-10">
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Honeypot field — hidden from real users, bots tend to fill it in */}
+                  <input
+                    type="text"
+                    name="company"
+                    value={form.company}
+                    onChange={(e) =>
+                      setForm({ ...form, company: e.target.value })
+                    }
+                    autoComplete="off"
+                    tabIndex="-1"
+                    className="hidden"
+                  />
+
                   {/* Name */}
                   <div className="relative">
                     <input
@@ -143,12 +187,6 @@ export default function Contact() {
                     <label className="absolute left-4 top-2 text-xs text-white/40 peer-focus:text-[#8ddc6e] transition-colors">
                       Full Name
                     </label>
-                    <ValidationError
-                      prefix="Name"
-                      field="name"
-                      errors={state.errors}
-                      className="text-red-400 text-xs mt-1"
-                    />
                   </div>
 
                   {/* Email */}
@@ -165,12 +203,6 @@ export default function Contact() {
                     <label className="absolute left-4 top-2 text-xs text-white/40 peer-focus:text-[#8ddc6e] transition-colors">
                       Email Address
                     </label>
-                    <ValidationError
-                      prefix="Email"
-                      field="email"
-                      errors={state.errors}
-                      className="text-red-400 text-xs mt-1"
-                    />
                   </div>
 
                   {/* Message */}
@@ -187,12 +219,6 @@ export default function Contact() {
                     <label className="absolute left-4 top-2 text-xs text-white/40 peer-focus:text-[#8ddc6e] transition-colors">
                       Your Message
                     </label>
-                    <ValidationError
-                      prefix="Message"
-                      field="message"
-                      errors={state.errors}
-                      className="text-red-400 text-xs mt-1"
-                    />
                   </div>
 
                   {/* Success / Error messages */}
@@ -201,19 +227,19 @@ export default function Contact() {
                       Message sent successfully! We’ll get back to you soon.
                     </div>
                   )}
-                  {state.errors && state.errors.length > 0 && (
+                  {error && (
                     <div className="p-4 border border-red-500/30 bg-red-500/10 text-red-400 text-sm">
-                      Please check the form for errors and try again.
+                      {error}
                     </div>
                   )}
 
                   {/* Submit Button */}
                   <Button
                     type="submit"
-                    disabled={state.submitting}
+                    disabled={loading}
                     className="w-full h-12 rounded-none bg-[#8ddc6e] text-[#030504] font-medium hover:bg-[#7bc85d] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {state.submitting ? "Sending..." : "Send Message"}
+                    {loading ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </div>
